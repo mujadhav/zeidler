@@ -1,0 +1,76 @@
+package Files_Home_Regression;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Files_Home
+
+  {
+
+
+    public static void main(String[] args) 
+    
+    {
+
+
+    \\Opening the Chrome browser
+    System.setProperty("webdriver.chrome.driver","D:\\chrome\\chromedriver.exe");
+    WebDriver driver = new ChromeDriver();
+    driver.manage().window().maximize();
+    String baseUrl = "https://demo.bigtreecms.org/admin/login/";
+    driver.get(baseUrl);
+   
+
+    \\Login Functionality 
+    string Email =driver.findElement(By.id("user"));
+    string Password =driver.findElement(By.id("password"));
+    Email.sendKeys("demo@bigtreecms.org");
+    Password.sendKeys("demo");
+    driver.findElement(By.classname("button blue")).click();
+
+   
+    \\Verification of the landing page
+    String actualTitle1 = driver.getTitle();
+    String expectedTitle1 = "https://demo.bigtreecms.org/admin/dashboard/";
+    assertEquals(expectedTitle1,actualTitle1);
+
+
+   \\Clicking on File Menu
+    String Files_Menu= driver.findElement(By.xPath("/html/body/nav/section/ul/li[4]/a"));
+    Files_Menu.click();
+
+   
+  \\Verify that Add Files Link is working properly
+   driver.findElement(By.linkText("Add Files")).click();
+   String actualTitle2 = driver.getTitle();
+   String expectedTitle2 = "https://demo.bigtreecms.org/admin/files/add/file/0/";
+   assertEquals(expectedTitle2,actualTitle2);
+
+  \\Verify that Add Video Link is working properly
+    driver.findElement(By.linkText("Add Video")).click();
+   String actualTitle3 = driver.getTitle();
+   String expectedTitle3 = "https://demo.bigtreecms.org/admin/files/add/video/0/";
+   assertEquals(expectedTitle3,actualTitle3);
+
+  
+  \\Verify that Add Folder Link is working properly
+   driver.findElement(By.linkText("Add Folder")).click();
+   String actualTitle4 = driver.getTitle();
+   String expectedTitle4 = "https://demo.bigtreecms.org/admin/files/add/folder/0/";
+   assertEquals(expectedTitle4,actualTitle4);
+
+
+   }
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
